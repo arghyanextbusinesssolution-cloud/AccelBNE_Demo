@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AccelBnB - Your rental needs a team</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hover-lift {
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -10px rgba(0,0,0,0.08);
+        }
+        .image-zoom-container {
+            overflow: hidden;
+        }
+        .image-zoom {
+            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .image-zoom-container:hover .image-zoom {
+            transform: scale(1.05);
+        }
+        /* Custom Utilities for editorial feel */
+        .text-balance { text-wrap: balance; }
+        .editorial-shadow { box-shadow: 0 4px 40px rgba(0, 0, 0, 0.04); }
+        .brand-logo {
+            display: block;
+            width: 150px;
+            height: 44px;
+            position: relative;
+            overflow: hidden;
+        }
+        .brand-logo img {
+            position: absolute;
+            width: 161px;
+            max-width: none;
+            top: -50px;
+            left: 0;
+        }
+        @media (max-width: 767px) {
+            .brand-logo { width: 128px; height: 38px; }
+            .brand-logo img { width: 138px; top: -43px; }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-background": "#1a1c1c",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e2e2e2",
+                        "surface-container-low": "#f4f3f3",
+                        "surface-variant": "#e2e2e2",
+                        "secondary-container": "#e0e0dd",
+                        "on-tertiary-container": "#b8b5b5",
+                        "surface-tint": "#45655b",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#484747",
+                        "on-surface-variant": "#414845",
+                        "tertiary": "#313131",
+                        "surface-bright": "#f9f9f9",
+                        "on-primary-fixed-variant": "#2e4d44",
+                        "on-error-container": "#93000a",
+                        "surface": "#f9f9f9",
+                        "secondary-fixed-dim": "#c7c6c4",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "outline-variant": "#c1c8c4",
+                        "on-secondary-container": "#626361",
+                        "on-primary-fixed": "#002019",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "secondary": "#5e5f5d",
+                        "on-surface": "#1a1c1c",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#e8e8e8",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#464745",
+                        "primary-fixed-dim": "#accec2",
+                        "surface-dim": "#dadada",
+                        "background": "#f9f9f9",
+                        "on-primary-container": "#9bbdb1",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#eeeeee",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#e3e2e0",
+                        "primary-fixed": "#c7eade",
+                        "inverse-surface": "#2f3131",
+                        "on-secondary-fixed": "#1a1c1a",
+                        "inverse-on-surface": "#f1f1f1",
+                        "primary-container": "#2e4d44",
+                        "primary": "#17362e",
+                        "outline": "#717975",
+                        "inverse-primary": "#accec2",
+                        "tertiary-fixed": "#e5e2e1",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#c8c6c5"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "lg": "48px",
+                        "margin-desktop": "64px",
+                        "md": "24px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "xl": "80px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "sm": "12px"
+                    },
+                    fontFamily: {
+                        "body-lg": ["Inter", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "headline-lg": ["Inter", "sans-serif"],
+                        "headline-lg-mobile": ["Inter", "sans-serif"],
+                        "label-md": ["Inter", "sans-serif"],
+                        "headline-md": ["Inter", "sans-serif"],
+                        "display-lg": ["Inter", "sans-serif"]
+                    },
+                    fontSize: {
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "hero": ["72px", { "lineHeight": "1.05", "letterSpacing": "-0.03em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- 1. NAVBAR -->
+<nav class="bg-surface/80 backdrop-blur-md shadow-sm dark:shadow-none fixed inset-x-0 top-0 w-full z-50 flex justify-between items-center px-margin-desktop h-20 transform transition-transform duration-300" id="main-nav">
+<a class="brand-logo" href="#top" aria-label="AccelBnB home"><img src="logo3.jpeg" alt="AccelBnB"></a>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1 font-semibold transition-colors duration-200" href="browse.html">Find Services</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary pb-1 transition-colors duration-200" href="#how">How It Works</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary pb-1 transition-colors duration-200" href="#providers">For Providers</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary pb-1 transition-colors duration-200" href="#about">About</a>
+</div>
+<div class="flex items-center gap-4">
+<a class="hidden md:inline-flex font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="provider.html#login">Provider Login</a>
+<a class="hidden md:inline-flex bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors duration-200 hover-lift" href="provider.html">
+                List Your Service
+            </a>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined" style="font-size: 28px;">menu</span>
+</button>
+</div>
+</nav>
+<!-- 2. HERO -->
+<section class="pt-32 pb-24 px-margin-desktop max-w-7xl mx-auto min-h-[921px] flex items-center" id="top">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
+<div class="lg:col-span-6 z-10 flex flex-col justify-center">
+<p class="font-label-md text-label-md text-secondary tracking-widest uppercase mb-6">Local services for short-term rentals</p>
+<h1 class="text-[56px] lg:text-hero leading-tight tracking-tighter text-on-background font-bold mb-8 text-balance">
+                    Your rental needs a team.<br/>Find yours.
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-lg">
+                    Discover and connect directly with specialized cleaners, co-hosts, photographers, and maintenance professionals tailored for the hospitality industry.
+                </p>
+<!-- Search Interface -->
+<div class="bg-surface-container-lowest p-2 rounded-xl editorial-shadow border border-surface-container-high w-full max-w-xl">
+<form class="flex flex-col sm:flex-row gap-2" action="browse.html" method="get">
+<div class="flex-1 relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">home_repair_service</span>
+<select class="w-full bg-transparent border-0 focus:ring-2 focus:ring-primary rounded-lg py-4 pl-12 pr-4 font-body-md text-on-surface cursor-pointer appearance-none">
+<option disabled="" selected="" value="">Service needed...</option>
+<option value="cleaning">Cleaning</option>
+<option value="cohosting">Co-hosting</option>
+<option value="photography">Photography</option>
+<option value="hvac">HVAC</option>
+<option value="electrical">Electrical</option>
+<option value="plumbing">Plumbing</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+<div class="w-px bg-surface-container-high hidden sm:block my-2"></div>
+<div class="flex-1 relative border-t sm:border-t-0 border-surface-container-high">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">location_on</span>
+<input class="w-full bg-transparent border-0 focus:ring-2 focus:ring-primary rounded-lg py-4 pl-12 pr-4 font-body-md text-on-surface placeholder:text-outline-variant" placeholder="Location" type="text"/>
+</div>
+<button class="bg-primary text-on-primary rounded-lg px-8 py-4 font-label-md text-label-md font-semibold hover:bg-primary/90 transition-colors mt-2 sm:mt-0 flex items-center justify-center gap-2" type="submit">
+<span>Find</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</form>
+</div>
+</div>
+<div class="lg:col-span-6 relative h-[600px] hidden lg:block">
+<!-- Layered Photography -->
+<div class="absolute right-0 top-0 w-4/5 h-4/5 rounded-2xl overflow-hidden image-zoom-container editorial-shadow">
+<img alt="Luxury STR Living Room" class="w-full h-full object-cover image-zoom" data-alt="A bright, modern, high-end short-term rental living room with floor-to-ceiling windows, minimalist furniture, warm off-white tones, and natural light. Photographed in an architectural editorial style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBw5M9tM0lMEyW4r6AjD5EO_ZO5UXqrqLp7ZfTElvkTojOntlsaTC_ULpMLVoMuILbjSJl1XVZGw0ezxsEDEjpj59QyUfUhaZBU60w-ZOxYDq5jP_wYbHNpHYQdEKVqHlxmFmg-Fli-SmrLvkd6JTYdfbOVTDT_kZZf6DoZ0VJhuKPOxoysPVOdjNQ_0tICFLTnd67nGSRA6J2zGbN2yPc11QlQ5OIeI4TaS4EZzz6fGCTNHieWCfG9nA"/>
+</div>
+<div class="absolute left-0 bottom-0 w-2/3 h-2/3 rounded-2xl overflow-hidden image-zoom-container border-8 border-background editorial-shadow">
+<img alt="Professional Cleaner" class="w-full h-full object-cover image-zoom" data-alt="A professional hospitality cleaner in a crisp, modern uniform, attentively arranging high-quality linens on a pristine white bed in a luxury rental property. Natural, bright lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAV-qMMPm3Y9J6eVJmNTGrrU_wAxuhH07iMFNXOs27qImeOq_uAh1139K8dn5CNYrm_Omd_qtc1xwhWcOyA5r70-FZ0aVMyfaGqG6hyDShRXthqLLTl6P5cF1s966j4JE-Z4MLFslb7suTy7tkqxE5fZ130NeSrXCsqiJ4Q7Q-QUK8_O7BKvfl4NWPq74zmXRTzux_pidz06WaixteAkk-1k8PH-WhBaSinlrR0zh3DQoa74YZz5MmGbg"/>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. SERVICE CATEGORIES -->
+<section class="py-24 px-margin-desktop bg-surface-container-low" id="find">
+<div class="max-w-7xl mx-auto">
+<h2 class="font-display-lg text-display-lg text-on-background mb-12">Everything your rental needs, all in one place.</h2>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-[800px] md:h-[600px]">
+<!-- Cleaning (Large) -->
+<a class="md:col-span-6 row-span-2 group relative rounded-2xl overflow-hidden image-zoom-container hover-lift" href="#">
+<img alt="Cleaning" class="w-full h-full object-cover image-zoom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBC0xS8kW7mZGo_Tt7UEE1NnJlV3RqOHOznqhaNTMw406jGmGHDxJKYfOWyyh4AxDWyb2tpfuRJJkfIYQHABUS0ZlvkC5RzIiar8AHL5JLrMWcO0wCzFLAGYc15h22nxt5LQDxB-kQSfx2KpcMUd3HvlfrB7oNMvQ1kRM-SjhWKnUyWWrpwBaSKl-cxR2JbOvsltsXl5ZbBXFYQ4jp0VDF66d-efsv_5Y2hxAZK3CWV8IUy8N3pVFg2oA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-8">
+<h3 class="font-headline-lg text-on-primary mb-2">Cleaning</h3>
+<p class="font-body-md text-on-primary/80">Specialized turnover experts.</p>
+</div>
+</a>
+<!-- Co-hosting (Medium) -->
+<a class="md:col-span-3 row-span-2 group relative rounded-2xl overflow-hidden image-zoom-container hover-lift" href="#">
+<img alt="Co-hosting" class="w-full h-full object-cover image-zoom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6a0H43XJpbAg1VnF7hrUWyQpG-_DfFaOuhBsUJtigwZq2hwCy2ep18RTNWvb94zS2YmylHfeAxkRt3MFN9Z3xpDDWbIj7t4_P1eFz3sbLBmU1-MQWIee8YIyU-uN5xS3lsZrzGWo7QcFhIoU_a6hwfro7c6RIqjEXHfNQ6PtylE9rdxkeD0lvdleaukAJkE6xOLrlN0HpRkQzUtXa7nSsMqqMnSjvKS4fJizW36s2sE0VlVFdVWgnHw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-6">
+<h3 class="font-headline-md text-on-primary mb-2">Co-hosting</h3>
+<p class="font-body-md text-on-primary/80">Local management partners.</p>
+</div>
+</a>
+<!-- Photography (Medium) -->
+<a class="md:col-span-3 row-span-1 group relative rounded-2xl overflow-hidden image-zoom-container hover-lift" href="#">
+<img alt="Photography" class="w-full h-full object-cover image-zoom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyKbTUFGze-0b9puNSrqzGJj174dP3LqL-AZAimdoCoaRe2WzTRpDx1Pjskzt7vQI1e5xbW9A47RrcH5QoDntYZA4XuXJR1l8KpXu9aGjbPzF6xaiRvZBimOSNLS2yWP2254ttEstkHn9QOPmAQB2MKAYuDDa2DqnwqBNdIakjwukEmt3SHd82FjeMbnLYBVnA35-do9o3-emqW2bBJkckZ8kotl3_4BEJV6ZKj3Xtmq3b7XlCYWLgUQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-6">
+<h3 class="font-headline-md text-on-primary mb-2">Photography</h3>
+<p class="font-body-md text-on-primary/80">Stand out.</p>
+</div>
+</a>
+<!-- Smaller Categories -->
+<div class="md:col-span-3 grid grid-rows-3 gap-6">
+<a class="group relative rounded-2xl overflow-hidden image-zoom-container hover-lift" href="#">
+<img alt="HVAC" class="w-full h-full object-cover image-zoom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9QDjblYhVGODl8C8VvP9RfsiiSGoQTlHUxp_MPJGVmaa2gJzLHf5WmNMTbCo2pgkksb8ykeN8RMi7XqOfhoV5HeIapnNjtBgZHC7RakUF-LabZ2IaNwl5tSqX0F9H1f6m3Bq-qfRVRHnRv0cyxV35b2KtwfSnoICMKGP_e_xgmdR3eriejJAgTlhGBOTyMqAfTR9U9sgVmfgIrRz8TPzILYlB-f0FvB76laLWcUb2eH_O7_xek5eWkA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-4">
+<h3 class="font-label-md text-on-primary">HVAC</h3>
+</div>
+</a>
+<a class="group relative rounded-2xl overflow-hidden image-zoom-container hover-lift" href="#">
+<img alt="Electrical" class="w-full h-full object-cover image-zoom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5dGAztZuwviZA8SLErMSOxcohqanFQtdCrZ4eo810E2u82BX-YCOHWcmkSRAZDRQHpenzHWe1HGei2RVY_Eqgd4rLlXwoxg-zdqD0Nakj6UgliI-nuRL-WztdDFEw0yUNGGa3DVCcSNG1iZRkkcqO64uuTnWxGC0R8TbHP3b-Z3S_BT4SVS83psQx1jq0PR0t2M6KP5f7qMXJuReRNnxuk2cuJJS3XXvuMHIlFYZzvlRmKpVEgsoNjQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-4">
+<h3 class="font-label-md text-on-primary">Electrical</h3>
+</div>
+</a>
+<a class="group relative rounded-2xl overflow-hidden image-zoom-container hover-lift" href="#">
+<img alt="Plumbing" class="w-full h-full object-cover image-zoom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgDaT5URnr5CKoT8scZpuwdupw3GclX40Wo-pBLtnaqnEqW0qV6fwrw882ZrkINpttNbmb-u-iq5wdw--bjx0p_cWOtZYL1B5ry0GGjS2cYTUQ5eet0kXaV8HosCM_845-Jqjt_5XihCxdLvYbCLlvXkD2ngJn92sTjGY2u1ZKrkY9xKq7wC4_38IZchNmsota6ZdkTxhW-eUkLuIW4mIJJspX1Ye9-uwiYDkFZR6RFuezZkw6EXd1mg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-4">
+<h3 class="font-label-md text-on-primary">Plumbing</h3>
+</div>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. FEATURED PROVIDERS -->
+<section class="py-24 px-margin-desktop bg-surface max-w-7xl mx-auto">
+<h2 class="font-display-lg text-display-lg text-on-background mb-12">People who help keep great stays running.</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Provider 1 -->
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden border border-outline-variant hover-lift flex flex-col">
+<img alt="BrightStay Cleaning" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNWKjZ8WgjQqSt8KgBRQocXBkYZ0Qo2-3bGU9VjHix5nU_XSh-DLfNju_v_Lcdjuzvp5MVztQT7-3BJ9Ll9l2vPC5Ms1Mkb4Vb9lyuhsHrm2KhJJHgfwoJfsbincI5O2fQiGhYHLykxlwIrbEqby17-pZrN9plWcHXggnojpYc5GtUU1ExMd9EQCPabX6N9zA0Wvv2OkPqsFfq3NtlDFm5-Ga3CK4DmRICwdmyLeDEtBh-CeUJgtkFYA"/>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="font-headline-md text-on-surface mb-2">BrightStay Cleaning</h3>
+<p class="font-body-md text-secondary mb-4">Professional Turnover Specialists</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-label-md text-on-surface-variant">Starting at $120/turn</span>
+<a class="font-label-md text-primary font-semibold hover:underline" href="#">View Provider</a>
+</div>
+</div>
+</div>
+<!-- Provider 2 -->
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden border border-outline-variant hover-lift flex flex-col">
+<img alt="StayFrame Photography" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSHpfaUJBexlXmOAqo4oK_OT9MPVNbn92fcYxiGl-laza7bNvEswBnjvcsMqH6Wr1GhBW4ftmAGoUtPC6qE6yJ7CF1AqDindFX02jsOkzou6Surn6fHT4Ni8rZFQQhvEZ1c22SjDIDBEE1lZAbNg48yGnuzN8NVM-Mjf3pSUC_S7gVeMO8ty7Rzp_CMDxyq6V1FrlV3ROlwphbVjB_zDdbe2Hw3iJm8s8jNuabBojQv9FJOod4MCchjA"/>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="font-headline-md text-on-surface mb-2">StayFrame Photography</h3>
+<p class="font-body-md text-secondary mb-4">Architectural &amp; Interior Imagery</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-label-md text-on-surface-variant">Starting at $250/shoot</span>
+<a class="font-label-md text-primary font-semibold hover:underline" href="#">View Provider</a>
+</div>
+</div>
+</div>
+<!-- Provider 3 -->
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden border border-outline-variant hover-lift flex flex-col">
+<img alt="HostSide Management" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1eeKprgt1md7RLef_J6C9ft6QbtzXK6grUKotvmlshpg0c7zSjf3POgsEqpb2ybIuqCVhcQeUQTYrU5TbuYuFa0yMZIbEhqXwWLgrojX3-d7k3d1x2YlKhfAcdJHjmTl7VuobmqQnvg3hvHxDD1iXHerm6WUknBf2VpwFVcLGQXNJ33Pee8GFZP0Cn4JK_biMIPVO7fmN77HdtElyxcfjQI-c2Tm_JCmizSN1cGP8QgTrjapJ4xjo_Q"/>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="font-headline-md text-on-surface mb-2">HostSide Management</h3>
+<p class="font-body-md text-secondary mb-4">Full-Service Co-hosting</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-label-md text-on-surface-variant">Starting at 15% rev share</span>
+<a class="font-label-md text-primary font-semibold hover:underline" href="#">View Provider</a>
+</div>
+</div>
+</div>
+<!-- Provider 4 -->
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden border border-outline-variant hover-lift flex flex-col">
+<img alt="Coastal Air Services" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzKADHxq-FwZdCyWLWvTg1o_J3KvpDrTZ5uK7UHhEysUpA0SSV78LbPrvKPI9oQcFzl5nDSMhjO686kHORibIcTpHgbeoLeCDeecIRiNtrUhTJa8swpxzUYxzujAWaqWg8gjDjT-mNwdqNMjnPav-Zc6VcS5Roi3bUdoLzDrm4G2O8HbW90rso_SxTTiWjORtPKGHfFrStwDVtklDodRSENjqvsWrxqTXWI8m94p47RLgn3p78mvzIPQ"/>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="font-headline-md text-on-surface mb-2">Coastal Air Services</h3>
+<p class="font-body-md text-secondary mb-4">Emergency HVAC Repair &amp; Maint.</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-label-md text-on-surface-variant">Starting at $85/hr</span>
+<a class="font-label-md text-primary font-semibold hover:underline" href="#">View Provider</a>
+</div>
+</div>
+</div>
+<!-- Provider 5 -->
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden border border-outline-variant hover-lift flex flex-col">
+<img alt="Current Property Electric" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfJFLrAD_WjH3c24oseNzDTtR4c_YjK9RxxfhrYLxzx_kEH_uiDaRUxrKm3lQo9rSycuNeBmdv3TJeEB1KOYjMoczx28fsXKcOz8DTOs5NBVaaQN2Q5G2CL7ULKtyEgxR8IjADsPwVBvTmAiETBtYprCyEZOb7am97oQlzbuJjXPQSbiPV9ZRFFt_q7GGjnbKjXapvWh_ms7zrHgNzVYBDeO54GzFqnf_VJR_TAOukh7RaYMhOxVOJ7g"/>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="font-headline-md text-on-surface mb-2">Current Property Electric</h3>
+<p class="font-body-md text-secondary mb-4">Licensed Residential Electricians</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-label-md text-on-surface-variant">Starting at $95/hr</span>
+<a class="font-label-md text-primary font-semibold hover:underline" href="#">View Provider</a>
+</div>
+</div>
+</div>
+<!-- Provider 6 -->
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden border border-outline-variant hover-lift flex flex-col">
+<img alt="FlowRight Plumbing" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjdH1iMnN7L0pz1VtC8q-PYcvbT0j1pBNrMpo3w4yVpL3NLZzRgP918DRY8R7YRQc8VRYISPXE_tTz7gajc9uv6vRVj-GXA7iMgWxSzhAGarhydK5V-NOzPRW9thXZxorzyYCAp0ipAJzKYkMcWYz3LmO9YLnNmWgSY7WeBirNtaV5x2Ke6zuMy_ExpiL7x9mR0Za2Yimpp-Y1C--Y6JtDgTuKXHyrj6DPtxWJs8yWsz6XVgStPZdu9g"/>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="font-headline-md text-on-surface mb-2">FlowRight Plumbing</h3>
+<p class="font-body-md text-secondary mb-4">24/7 Emergency Plumbing Services</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-label-md text-on-surface-variant">Starting at $110/hr</span>
+<a class="font-label-md text-primary font-semibold hover:underline" href="#">View Provider</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. HOW IT WORKS -->
+<section class="py-32 px-margin-desktop bg-[#f4ece3]" id="how">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col gap-16">
+<!-- Step 1 -->
+<div class="flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-16 border-b border-outline-variant/30 pb-16">
+<span class="text-8xl md:text-[160px] font-bold text-primary/20 leading-none">01</span>
+<div>
+<h3 class="font-display-lg text-display-lg text-primary mb-4 uppercase">Find</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">Search our curated directory for the specific hospitality services your rental property requires.</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-16 border-b border-outline-variant/30 pb-16">
+<span class="text-8xl md:text-[160px] font-bold text-primary/20 leading-none">02</span>
+<div>
+<h3 class="font-display-lg text-display-lg text-primary mb-4 uppercase">Explore</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">Review detailed provider profiles, service offerings, pricing structures, and areas of expertise.</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-16">
+<span class="text-8xl md:text-[160px] font-bold text-primary/20 leading-none">03</span>
+<div>
+<h3 class="font-display-lg text-display-lg text-primary mb-4 uppercase">Connect</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">Reach out directly to providers to discuss your property needs, negotiate terms, and build your team.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. BRAND STORY -->
+<section class="py-32 px-margin-desktop bg-surface max-w-7xl mx-auto" id="about">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="order-2 lg:order-1 rounded-2xl overflow-hidden image-zoom-container editorial-shadow h-[700px]">
+<img alt="Professional preparing rental" class="w-full h-full object-cover image-zoom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNsp3vHLCKDkMJB7tNDfEOTH55SebzFMwR8UgMXprJ4GVOWAmMN2sTQTXQ8wRH0RWTMddaXR2zXYyAfMTrWAMky2K2441dg6SK8Z8pvafdY7o4joI9CY5bwONFZ2fY8lKUQXuqqBJ1NkKW1js0nhrFrWHpOAzfV9RV_duu7clufR4Q9CW8kudZ57NMeGyNwMpX0pfbEFo7KH0nSu2rC2tRkhyIKRRi8rvGI2b5xfc59zlYSuaMC4hGiw"/>
+</div>
+<div class="order-1 lg:order-2 flex flex-col justify-center">
+<h2 class="font-display-lg text-display-lg text-on-background mb-8">Good stays don't happen by accident.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-6">
+                Behind every five-star review is a dedicated team of professionals working tirelessly to ensure perfection. From the crisp linens arranged by specialized cleaners to the flawless images captured by architectural photographers, excellence requires expertise.
+            </p>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                AccelBnB was built on a simple premise: hosts need better access to the talent that powers their business. We're bridging the gap between property owners and the specialized local professionals who understand the unique demands of the short-term rental industry.
+            </p>
+</div>
+</div>
+</section>
+<!-- 7. WHY ACCELBNB -->
+<section class="py-32 px-margin-desktop bg-surface-container-lowest border-y border-outline-variant">
+<div class="max-w-7xl mx-auto flex flex-col gap-24">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-16">
+<div class="flex flex-col items-start text-left">
+<span class="material-symbols-outlined text-primary mb-6" style="font-size: 48px;">location_city</span>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-4 uppercase">Local</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Connect with professionals who know your specific market, understand local regulations, and can respond quickly when needed.</p>
+</div>
+<div class="flex flex-col items-start text-left">
+<span class="material-symbols-outlined text-primary mb-6" style="font-size: 48px;">tune</span>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-4 uppercase">Simple</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant">No complex bidding systems or hidden algorithms. Just clear profiles, transparent offerings, and easy ways to connect.</p>
+</div>
+<div class="flex flex-col items-start text-left">
+<span class="material-symbols-outlined text-primary mb-6" style="font-size: 48px;">handshake</span>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-4 uppercase">Direct</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant">We facilitate the connection, you manage the relationship. Work directly with your providers without middlemen or ongoing platform fees.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 8. FOR SERVICE PROVIDERS -->
+<section class="bg-primary text-on-primary" id="providers">
+<div class="grid grid-cols-1 lg:grid-cols-2">
+<div class="h-[600px] lg:h-auto overflow-hidden">
+<img alt="Service provider working" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCP8T5kcLH-DvNWzYzm2Wh8Q3wUPq1pHOK7BpN8m-Se4x2rMpUI_rEonGncbkC2mVSmOjejsH6u68BcjegKTTSjZK8fU60Cor0mb-l26yWQlQxaJIAqYNpR08X6SwgGDTCf5V7l_vzV5cCAev9q5vBxXnvnxkTUdh_UWu7IW_cJWoPzRrEYEaroU1Qs-SOcvx50YyJQ0J42GWa2lT3zL3_wmnWOCpBYprYXsna1DscqsQCHnMccdbF9qQ"/>
+</div>
+<div class="p-12 md:p-24 flex flex-col justify-center">
+<h2 class="font-display-lg text-display-lg mb-10">Get discovered by local STR hosts.</h2>
+<ul class="flex flex-col gap-8 mb-12">
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-inverse-primary mt-1">check_circle</span>
+<div>
+<h4 class="font-headline-md mb-2">Showcase Your Expertise</h4>
+<p class="font-body-md text-on-primary/80">Highlight your specialized experience in the hospitality and short-term rental sectors.</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-inverse-primary mt-1">check_circle</span>
+<div>
+<h4 class="font-headline-md mb-2">Connect Directly</h4>
+<p class="font-body-md text-on-primary/80">Hosts contact you directly. Manage your own leads, negotiations, and client relationships.</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-inverse-primary mt-1">check_circle</span>
+<div>
+<h4 class="font-headline-md mb-2">Grow Your Business</h4>
+<p class="font-body-md text-on-primary/80">Reach a targeted audience of property owners actively seeking professional services.</p>
+</div>
+</li>
+</ul>
+<a class="inline-flex bg-on-primary text-primary font-label-md text-label-md px-8 py-4 rounded-lg hover:bg-surface transition-colors duration-200 self-start" href="provider.html">
+                List Your Service
+            </a>
+</div>
+</div>
+</section>
+<!-- 9. OPEN DIRECTORY -->
+<section class="py-32 px-margin-desktop bg-surface max-w-4xl mx-auto text-center">
+<h2 class="font-display-lg text-display-lg text-on-background mb-8">An open directory for the modern host.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant text-balance mx-auto">
+        AccelBnB operates as a transparent, self-serve directory. We believe in empowering hosts to build their own networks and manage their own teams. We don't take a cut of your transactions, we don't handle your payments, and we don't stand in the middle of your communications. Our sole focus is making it effortless to discover the local talent that makes exceptional hospitality possible.
+    </p>
+</section>
+<!-- 10. FINAL CTA -->
+<section class="py-40 px-margin-desktop bg-surface-container-highest relative overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Abstract modern interior" class="w-full h-full object-cover opacity-30 mix-blend-multiply" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnD1ZZw6ijjuARuowQzry3ayZjhBkndZRhaWdrh_MDhysu-0Osr1u3XCO7RJ8N2fXA14lIU4KVVsnz6cuNiLiLz5m1jLlOwHJIQbcOJEYTqFouGm2834sdM3nYuXpjc5cl5riMHZQoNv6FCUTS7V2OJYwckMYjG8BPFw_dmCArn2H38_hc-D6SJpnLn0cdqtErRAMW-d37hNfysprLIv5XPVfNldTg3LaIJmNwnrJuTdNbVHTn_9QDyg"/>
+</div>
+<div class="max-w-4xl mx-auto relative z-10 text-center flex flex-col items-center">
+<h2 class="font-display-lg text-[64px] leading-none text-on-background mb-10 tracking-tight text-balance">Your rental needs a team. Start finding yours.</h2>
+<div class="flex flex-col sm:flex-row gap-6">
+<a class="bg-primary text-on-primary font-label-md text-label-md px-10 py-5 rounded-lg hover:bg-primary/90 transition-colors duration-200 flex items-center justify-center gap-2" href="browse.html">
+<span>Find Services</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</a>
+<a class="bg-transparent border-2 border-primary text-primary font-label-md text-label-md px-10 py-5 rounded-lg hover:bg-primary/5 transition-colors duration-200 flex items-center justify-center" href="provider.html">
+                List Your Service
+            </a>
+</div>
+</div>
+</section>
+<!-- 11. FULL FOOTER -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant py-xl px-margin-desktop w-full">
+<div class="max-w-7xl mx-auto flex flex-col gap-xl">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+<div>
+<h4 class="font-headline-md text-headline-md text-primary mb-6">AccelBnB</h4>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs">Connecting short-term rentals with specialized local professionals to elevate the guest experience.</p>
+</div>
+<div>
+<h5 class="font-label-md text-label-md text-on-surface font-semibold mb-6 uppercase tracking-wider">Discover</h5>
+<ul class="flex flex-col gap-4 font-body-md text-body-md text-secondary">
+<li><a class="hover:text-primary transition-colors" href="#">Find Cleaners</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Find Co-hosts</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Find Photographers</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Find Maintenance</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-md text-label-md text-on-surface font-semibold mb-6 uppercase tracking-wider">For Providers</h5>
+<ul class="flex flex-col gap-4 font-body-md text-body-md text-secondary">
+<li><a class="hover:text-primary transition-colors" href="provider.html">List Your Service</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Provider Guidelines</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Success Stories</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-md text-label-md text-on-surface font-semibold mb-6 uppercase tracking-wider">Legal</h5>
+<ul class="flex flex-col gap-4 font-body-md text-body-md text-secondary">
+<li><a class="hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Cookie Settings</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Directory Disclaimer</a></li>
+</ul>
+</div>
+</div>
+<div class="pt-8 border-t border-surface-container-high flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-body-md text-body-md text-secondary">© 2024 AccelBnB. All rights reserved.</p>
+<div class="flex gap-4 text-secondary">
+<a class="hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">language</span></a>
+<a class="hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">help</span></a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Simple scroll effect for nav
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 20) {
+                nav.classList.add('shadow-md');
+                nav.classList.remove('shadow-sm');
+            } else {
+                nav.classList.remove('shadow-md');
+                nav.classList.add('shadow-sm');
+            }
+        });
+    </script>
+</body></html>
