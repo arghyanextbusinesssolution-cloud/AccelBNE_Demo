@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AccelBnB | Find local services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="browse.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="code.html#top" aria-label="AccelBnB home">AccelBnB</a>
+    <nav aria-label="Main navigation"><a class="active" href="browse.html">Find Services</a><a href="code.html#how">How It Works</a><a href="code.html#providers">For Providers</a><a href="code.html#about">About</a></nav>
+    <a class="header-provider" href="provider.html">List Your Service <span>↗</span></a>
+    <button class="menu-button" aria-label="Open menu">☰</button>
+  </header>
+
+  <main>
+    <section class="directory-view active" id="directory-view">
+      <div class="directory-hero"><p class="eyebrow">The AccelBnB directory</p><h1>Find local services<br><em>for your rental.</em></h1><p>Explore independent professionals serving short-term rental properties in your area.</p></div>
+      <section class="search-panel" aria-label="Search and filter providers"><label>Location<div class="input-wrap"><span>⌖</span><input id="location-input" value="Miami, Florida" aria-label="Location"></div></label><label>Service category<select id="category-select" aria-label="Service category"><option>All Services</option><option>Cleaning</option><option>Co-hosting</option><option>Photography</option><option>HVAC</option><option>Electrical</option><option>Plumbing</option></select></label><label class="search-field">Search providers<input id="search-input" placeholder="Search providers..." aria-label="Search providers"></label></section>
+      <div class="category-strip" id="category-strip" aria-label="Provider categories"><button class="category-chip active" data-category="All Services">All</button><button class="category-chip" data-category="Cleaning">Cleaning</button><button class="category-chip" data-category="Co-hosting">Co-hosting</button><button class="category-chip" data-category="Photography">Photography</button><button class="category-chip" data-category="HVAC">HVAC</button><button class="category-chip" data-category="Electrical">Electrical</button><button class="category-chip" data-category="Plumbing">Plumbing</button></div>
+      <div class="results-heading"><div><p class="eyebrow">Available in Miami</p><h2 id="result-summary">10 providers in Miami</h2></div><span id="result-count">10 results</span></div>
+      <div class="provider-grid" id="provider-grid"></div>
+      <div class="empty-state" id="empty-state" hidden><div class="empty-icon">⌂</div><h2>No providers found.</h2><p id="empty-copy">We don't have any providers in this area yet.</p><div><button class="secondary" id="show-all">View All Providers</button><a class="primary" href="provider.html">List Your Service <span>→</span></a></div></div>
+    </section>
+
+    <section class="profile-view" id="profile-view" hidden>
+      <div class="profile-shell"><button class="back-link" id="back-to-results">← Back to Providers</button><p class="breadcrumb"><button id="breadcrumb-all">Find Services</button><span>/</span><span id="breadcrumb-category">Cleaning</span><span>/</span><strong id="breadcrumb-name">BrightStay Cleaning</strong></p><div class="profile-gallery" id="profile-gallery"></div><div class="profile-intro"><div><p class="eyebrow" id="profile-category">Cleaning · Miami, Florida</p><h1 id="profile-name">BrightStay Cleaning</h1><p class="profile-headline" id="profile-headline">Reliable vacation rental turnovers throughout Miami.</p></div><div class="starting-price" id="profile-price">Starting at $0.18 / sq ft</div></div><div class="profile-content"><div><section><h2>About</h2><p id="profile-about"></p></section><section><h2>Services & Pricing</h2><div class="services-list" id="profile-services"></div></section></div><aside><div class="contact-panel" id="contact-panel"><p class="eyebrow">Work directly</p><h2 id="contact-question">Interested in working with BrightStay Cleaning?</h2><p class="contact-subtext">Reach out directly to discuss your property and service needs.</p><button class="primary" id="reveal-contact">Show Contact Info <span>→</span></button><div class="contact-details" id="contact-details" hidden><div><small>Phone</small><a id="contact-phone"></a></div><div><small>Email</small><a id="contact-email"></a></div><div><small>Website</small><a id="contact-website"></a></div><div class="contact-actions"><a class="primary" id="call-provider">Call Provider</a><a class="secondary" id="email-provider">Email Provider</a><a class="secondary" id="visit-website" target="_blank" rel="noreferrer">Visit Website</a></div></div></div></aside></div><section class="disclaimer"><h2>Before you hire</h2><p>AccelBnB is an open, self-serve directory. Providers are not vetted, verified or endorsed by AccelBnB. Hosts should independently verify credentials, insurance, licensing and suitability before hiring.</p></section><section class="t1-banner" id="t1-banner"><div><p class="eyebrow">T1 Stays</p><h2>Have a property of your own?</h2><p>List your home to traveling professionals — free on T1 Stays.</p></div><a class="secondary" href="#" data-toast="T1 Stays link opened">List on T1 Stays <span>→</span></a></section></div>
+    </section>
+  </main>
+  <div class="mobile-contact" id="mobile-contact"><button class="primary" id="mobile-contact-button">Show Contact Info</button></div>
+  <div class="toast" role="status"></div>
+  <script src="browse.js"></script>
+</body>
+</html>
