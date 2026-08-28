@@ -1,6 +1,25 @@
 const screens = document.querySelectorAll('.screen');
 const toast = document.querySelector('.toast');
+const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
+const mobileNavPanel = document.querySelector('.mobile-nav-panel');
+const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+const mobileNavClose = document.querySelector('.nav-close');
 let toastTimer;
+
+function toggleMobileNav(forceOpen) {
+  const shouldOpen = typeof forceOpen === 'boolean' ? forceOpen : !mobileNavPanel.classList.contains('open');
+  mobileNavPanel.classList.toggle('open', shouldOpen);
+  mobileNavOverlay.classList.toggle('visible', shouldOpen);
+  mobileMenuToggle?.setAttribute('aria-expanded', String(shouldOpen));
+  document.body.style.overflow = shouldOpen ? 'hidden' : '';
+}
+
+mobileMenuToggle?.addEventListener('click', () => toggleMobileNav());
+mobileNavOverlay?.addEventListener('click', () => toggleMobileNav(false));
+mobileNavClose?.addEventListener('click', () => toggleMobileNav(false));
+document.querySelectorAll('.mobile-nav-links a').forEach((link) => {
+  link.addEventListener('click', () => toggleMobileNav(false));
+});
 
 function showScreen(id) {
   screens.forEach((screen) => screen.classList.toggle('active', screen.id === id));

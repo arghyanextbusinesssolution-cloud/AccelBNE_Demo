@@ -1,4 +1,24 @@
 const bannerEnabled = true;
+const navOverlay = document.querySelector('.mobile-nav-overlay');
+const navDrawer = document.querySelector('.mobile-nav-panel');
+const menuButton = document.querySelector('.menu-button');
+const navCloseButton = document.querySelector('.nav-close');
+
+function toggleMobileNav(forceOpen) {
+  const open = typeof forceOpen === 'boolean' ? forceOpen : !navDrawer.classList.contains('open');
+  navDrawer.classList.toggle('open', open);
+  navOverlay.classList.toggle('visible', open);
+  menuButton?.setAttribute('aria-expanded', String(open));
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+
+menuButton?.addEventListener('click', () => toggleMobileNav());
+navOverlay?.addEventListener('click', () => toggleMobileNav(false));
+navCloseButton?.addEventListener('click', () => toggleMobileNav(false));
+document.querySelectorAll('.mobile-nav-links a').forEach((link) => {
+  link.addEventListener('click', () => toggleMobileNav(false));
+});
+
 const providers = [
   {name:'BrightStay Cleaning',category:'Cleaning',location:'Miami, FL',description:'Vacation rental turnovers, deep cleaning and linen services.',price:'Starting at $0.18 / sq ft',headline:'Reliable vacation rental turnovers throughout Miami.',about:'BrightStay Cleaning specializes in vacation rental turnovers, deep cleaning and linen service for short-term rental hosts throughout Miami. We focus on reliable scheduling, detailed cleaning and getting properties ready for the next guest.',phone:'(305) 555-0148',email:'hello@brightstay.example',website:'brightstay.example',services:[['Turnover Cleaning','Full turnover cleaning between guest stays.','Starting at $0.18 / sq ft'],['Deep Cleaning','Detailed property cleaning for seasonal or periodic refreshes.','Starting at $0.30 / sq ft'],['Linen Service','Linen change and basic laundry coordination.','Starting at $35 / service']],images:['photo-1581578731548-c64695cc6952','photo-1600566753086-00f18fb6b3ea','photo-1600607687939-ce8a6c25118c','photo-1600607687920-4e2a09cf159d']},
   {name:'Miami Turnover Co.',category:'Cleaning',location:'Miami, FL',description:'Fast and reliable turnover cleaning for short-term rentals.',price:'Starting at $0.20 / sq ft',headline:'A dependable reset between every guest.',about:'Miami Turnover Co. helps hosts move smoothly from checkout to check-in with thoughtful, efficient cleaning services.',phone:'(305) 555-0164',email:'hello@miamiturnover.example',website:'miamiturnover.example',services:[['Turnover Cleaning','Fast turnover service for guest-ready homes.','Starting at $0.20 / sq ft'],['Supply Restocking','Basic supply checks and restocking.','Starting at $25 / service']],images:['photo-1581578731548-c64695cc6952','photo-1600607687939-ce8a6c25118c','photo-1600566753086-00f18fb6b3ea','photo-1600607687920-4e2a09cf159d']},

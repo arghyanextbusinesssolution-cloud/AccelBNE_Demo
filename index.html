@@ -143,12 +143,142 @@
             }
         }
     </script>
+    <style>
+        .mobile-nav-overlay { position: fixed; inset: 0; background: rgba(17, 18, 18, 0.38); opacity: 0; visibility: hidden; transition: opacity 0.2s ease; z-index: 40; }
+        .mobile-nav-overlay.visible { opacity: 1; visibility: visible; }
+        .mobile-nav-panel { position: fixed; top: 0; left: 0; height: 100dvh; width: min(84vw, 340px); background: #fff; box-shadow: 18px 0 30px rgba(15, 23, 42, 0.14); transform: translateX(-110%); transition: transform 0.28s ease; z-index: 50; padding: 22px 20px; display: flex; flex-direction: column; overflow-y: auto; }
+        .mobile-nav-panel.open { transform: translateX(0); }
+        .mobile-nav-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+        .mobile-nav-header .brand-logo { display: inline-flex; }
+        .mobile-nav-header .brand-logo img { width: 118px; height: auto; }
+        .mobile-nav-links { display: flex; flex-direction: column; gap: 10px; }
+        .mobile-nav-links a { padding: 12px 0; border-bottom: 1px solid rgba(23, 54, 46, 0.12); color: #1a1c1c; font-weight: 600; text-decoration: none; }
+        .mobile-nav-links a.primary-link { margin-top: 12px; background: #17362e; color: #fff; padding: 14px 16px; border-radius: 12px; border: 0; text-align: center; }
+        .mobile-menu-toggle { display: none; align-items: center; justify-content: center; border: 0; background: transparent; }
+        @media (max-width: 767px) {
+            .desktop-nav, .header-cta, .desktop-provider-link { display: none !important; }
+            .mobile-menu-toggle { display: inline-flex; }
+            #main-nav { padding-left: 1rem; padding-right: 1rem; height: 72px; }
+
+            /* Mobile spacing */
+            section[class*="px-margin-desktop"],
+            footer[class*="px-margin-desktop"] {
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+            }
+
+            /* Hero */
+            #top {
+                padding-top: 96px !important;
+                padding-bottom: 56px !important;
+                min-height: auto !important;
+            }
+            #top h1 {
+                font-size: clamp(42px, 12vw, 58px) !important;
+                line-height: 1.02 !important;
+            }
+            #top p {
+                font-size: 16px !important;
+            }
+
+            /* Search form */
+            #top form {
+                gap: 10px !important;
+            }
+            #top form > div,
+            #top form button {
+                width: 100%;
+            }
+
+            /* Category section */
+            #find {
+                padding-top: 72px !important;
+                padding-bottom: 72px !important;
+            }
+            #find h2 {
+                font-size: 38px !important;
+                line-height: 1.08 !important;
+                margin-bottom: 32px !important;
+            }
+            #find .grid {
+                height: auto !important;
+            }
+            #find .grid > a {
+                min-height: 260px;
+            }
+            #find .grid > div {
+                min-height: 0;
+            }
+            #find .grid > div > a {
+                min-height: 180px;
+            }
+
+            /* General section typography/spacing */
+            section {
+                scroll-margin-top: 80px;
+            }
+            section.py-24,
+            section.py-32,
+            section.py-40 {
+                padding-top: 72px !important;
+                padding-bottom: 72px !important;
+            }
+            h2.text-display-lg,
+            h2.font-display-lg {
+                font-size: 38px !important;
+                line-height: 1.08 !important;
+            }
+
+            /* Brand story image */
+            #about .h-\[700px\] {
+                height: 420px !important;
+            }
+
+            /* Provider CTA */
+            #providers .h-\[600px\] {
+                height: 360px !important;
+            }
+            #providers .p-12 {
+                padding: 28px !important;
+            }
+
+            /* Final CTA */
+            section.py-40 h2 {
+                font-size: 42px !important;
+                line-height: 1.02 !important;
+            }
+            section.py-40 .px-10 {
+                width: 100%;
+                justify-content: center;
+            }
+
+            /* Footer */
+            footer {
+                padding-top: 64px !important;
+                padding-bottom: 32px !important;
+            }
+        }
+    </style>
 </head>
 <body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<div class="mobile-nav-overlay" aria-hidden="true"></div>
+<aside class="mobile-nav-panel" aria-label="Mobile navigation">
+    <div class="mobile-nav-header">
+        <a class="brand-logo" href="#top" aria-label="AccelBnB home"><img src="logo3.jpeg" alt="AccelBnB"></a>
+        <button class="mobile-nav-close text-primary" type="button" aria-label="Close menu" style="font-size: 24px;">✕</button>
+    </div>
+    <nav class="mobile-nav-links" aria-label="Mobile navigation links">
+        <a href="browse.html">Find Services</a>
+        <a href="#how">How It Works</a>
+        <a href="#providers">For Providers</a>
+        <a href="#about">About</a>
+        <a class="primary-link" href="provider.html">List Your Service</a>
+    </nav>
+</aside>
 <!-- 1. NAVBAR -->
 <nav class="bg-surface/80 backdrop-blur-md shadow-sm dark:shadow-none fixed inset-x-0 top-0 w-full z-50 flex justify-between items-center px-margin-desktop h-20 transform transition-transform duration-300" id="main-nav">
 <a class="brand-logo" href="#top" aria-label="AccelBnB home"><img src="logo3.jpeg" alt="AccelBnB"></a>
-<div class="hidden md:flex items-center gap-8">
+<div class="desktop-nav hidden md:flex items-center gap-8">
 <a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1 font-semibold transition-colors duration-200" href="browse.html">Find Services</a>
 <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary pb-1 transition-colors duration-200" href="#how">How It Works</a>
 <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary pb-1 transition-colors duration-200" href="#providers">For Providers</a>
@@ -156,20 +286,20 @@
 </div>
 <div class="flex items-center gap-4">
 <a class="hidden md:inline-flex font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="provider.html#login">Provider Login</a>
-<a class="hidden md:inline-flex bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors duration-200 hover-lift" href="provider.html">
+<a class="hidden md:inline-flex bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors duration-200 hover-lift header-cta" href="provider.html">
                 List Your Service
             </a>
-<button class="md:hidden text-primary">
+<button class="md:hidden text-primary mobile-menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
 <span class="material-symbols-outlined" style="font-size: 28px;">menu</span>
 </button>
 </div>
 </nav>
 <!-- 2. HERO -->
-<section class="pt-32 pb-24 px-margin-desktop max-w-7xl mx-auto min-h-[921px] flex items-center" id="top">
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
-<div class="lg:col-span-6 z-10 flex flex-col justify-center">
+<section class="pt-28 pb-16 px-4 sm:px-6 lg:px-margin-desktop max-w-7xl mx-auto min-h-[auto] lg:min-h-[921px] flex items-center" id="top">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center w-full">
+<div class="lg:col-span-6 z-10 flex flex-col justify-center pt-8 lg:pt-0">
 <p class="font-label-md text-label-md text-secondary tracking-widest uppercase mb-6">Local services for short-term rentals</p>
-<h1 class="text-[56px] lg:text-hero leading-tight tracking-tighter text-on-background font-bold mb-8 text-balance">
+<h1 class="text-5xl sm:text-6xl lg:text-hero leading-tight tracking-tighter text-on-background font-bold mb-8 text-balance">
                     Your rental needs a team.<br/>Find yours.
                 </h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-lg">
@@ -521,7 +651,25 @@
 </div>
 </div>
 </footer>
-<script>
+<script>        const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
+        const mobileNavPanel = document.querySelector('.mobile-nav-panel');
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const mobileNavClose = document.querySelector('.mobile-nav-close');
+
+        function toggleMobileNav(forceOpen) {
+            const shouldOpen = typeof forceOpen === 'boolean' ? forceOpen : !mobileNavPanel.classList.contains('open');
+            mobileNavPanel.classList.toggle('open', shouldOpen);
+            mobileNavOverlay.classList.toggle('visible', shouldOpen);
+            mobileMenuToggle?.setAttribute('aria-expanded', String(shouldOpen));
+            document.body.style.overflow = shouldOpen ? 'hidden' : '';
+        }
+
+        mobileMenuToggle?.addEventListener('click', () => toggleMobileNav());
+        mobileNavClose?.addEventListener('click', () => toggleMobileNav(false));
+        mobileNavOverlay?.addEventListener('click', () => toggleMobileNav(false));
+        document.querySelectorAll('.mobile-nav-links a').forEach((link) => {
+            link.addEventListener('click', () => toggleMobileNav(false));
+        });
         // Simple scroll effect for nav
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('main-nav');

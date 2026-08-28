@@ -143,12 +143,66 @@
             }
         }
     </script>
+    <style>
+        .mobile-nav-overlay { position: fixed; inset: 0; background: rgba(17, 18, 18, 0.38); opacity: 0; visibility: hidden; transition: opacity 0.2s ease; z-index: 40; }
+        .mobile-nav-overlay.visible { opacity: 1; visibility: visible; }
+        .mobile-nav-panel { position: fixed; top: 0; right: 0; height: 100vh; width: min(82vw, 320px); background: #fff; box-shadow: -18px 0 30px rgba(15, 23, 42, 0.12); transform: translateX(110%); transition: transform 0.25s ease; z-index: 50; padding: 22px 20px; display: flex; flex-direction: column; }
+        .mobile-nav-panel.open { transform: translateX(0); }
+        .mobile-nav-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+        .mobile-nav-header .brand-logo { display: inline-flex; }
+        .mobile-nav-header .brand-logo img { width: 118px; height: auto; }
+        .mobile-nav-links { display: flex; flex-direction: column; gap: 10px; }
+        .mobile-nav-links a { padding: 12px 0; border-bottom: 1px solid rgba(23, 54, 46, 0.12); color: #1a1c1c; font-weight: 600; text-decoration: none; }
+        .mobile-nav-links a.primary-link { margin-top: 12px; background: #17362e; color: #fff; padding: 14px 16px; border-radius: 12px; border: 0; text-align: center; }
+        .mobile-menu-toggle { display: none; align-items: center; justify-content: center; border: 0; background: transparent; }
+        @media (max-width: 767px) {
+            .desktop-nav, .header-cta, .desktop-provider-link { display: none !important; }
+            .mobile-menu-toggle { display: inline-flex; }
+            #main-nav { padding-left: 1rem; padding-right: 1rem; height: 72px; }
+            #top { padding-top: 5.5rem !important; padding-bottom: 3rem !important; }
+            #top .grid { gap: 2rem !important; }
+            #top h1 { font-size: clamp(2.8rem, 10vw, 4rem) !important; line-height: 1.05 !important; }
+            #top form { flex-direction: column !important; }
+            #top form > div, #top form button { width: 100% !important; }
+            #top .w-px { display: none !important; }
+            #find, #how, #about, #providers, #open-directory, #final-cta, footer { padding-left: 1rem !important; padding-right: 1rem !important; }
+            #find > .max-w-7xl > .grid { height: auto !important; grid-template-columns: 1fr !important; }
+            #find > .max-w-7xl > .grid > a, #find > .max-w-7xl > .grid > div { grid-column: 1 / -1 !important; min-height: 220px !important; }
+            #find > .max-w-7xl > .grid > .md\:col-span-3.grid { grid-template-columns: 1fr !important; }
+            #featured-providers > .grid { grid-template-columns: 1fr !important; }
+            #how .flex.flex-col.gap-16 { gap: 2.5rem !important; }
+            #how .text-8xl { font-size: 4.5rem !important; }
+            #about .grid { grid-template-columns: 1fr !important; }
+            #about .overflow-hidden { height: 300px !important; }
+            #providers .grid { grid-template-columns: 1fr !important; }
+            #providers .p-12 { padding: 2rem 1.25rem !important; }
+            #providers img { height: 280px !important; }
+            #open-directory { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+            #final-cta h2 { font-size: clamp(2.5rem, 8vw, 4rem) !important; line-height: 1.05 !important; }
+            #footer-grid { grid-template-columns: 1fr !important; }
+            #footer-meta { flex-direction: column !important; align-items: flex-start !important; }
+        }
+    </style>
 </head>
 <body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<div class="mobile-nav-overlay" aria-hidden="true"></div>
+<aside class="mobile-nav-panel" aria-label="Mobile navigation">
+    <div class="mobile-nav-header">
+        <a class="brand-logo" href="#top" aria-label="AccelBnB home"><img src="logo3.jpeg" alt="AccelBnB"></a>
+        <button class="mobile-nav-close text-primary" type="button" aria-label="Close menu" style="font-size: 24px;">✕</button>
+    </div>
+    <nav class="mobile-nav-links" aria-label="Mobile navigation links">
+        <a href="browse.html">Find Services</a>
+        <a href="#how">How It Works</a>
+        <a href="#providers">For Providers</a>
+        <a href="#about">About</a>
+        <a class="primary-link" href="provider.html">List Your Service</a>
+    </nav>
+</aside>
 <!-- 1. NAVBAR -->
 <nav class="bg-surface/80 backdrop-blur-md shadow-sm dark:shadow-none fixed inset-x-0 top-0 w-full z-50 flex justify-between items-center px-margin-desktop h-20 transform transition-transform duration-300" id="main-nav">
 <a class="brand-logo" href="#top" aria-label="AccelBnB home"><img src="logo3.jpeg" alt="AccelBnB"></a>
-<div class="hidden md:flex items-center gap-8">
+<div class="desktop-nav hidden md:flex items-center gap-8">
 <a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1 font-semibold transition-colors duration-200" href="browse.html">Find Services</a>
 <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary pb-1 transition-colors duration-200" href="#how">How It Works</a>
 <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary pb-1 transition-colors duration-200" href="#providers">For Providers</a>
@@ -156,10 +210,10 @@
 </div>
 <div class="flex items-center gap-4">
 <a class="hidden md:inline-flex font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="provider.html#login">Provider Login</a>
-<a class="hidden md:inline-flex bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors duration-200 hover-lift" href="provider.html">
+<a class="hidden md:inline-flex bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors duration-200 hover-lift header-cta" href="provider.html">
                 List Your Service
             </a>
-<button class="md:hidden text-primary">
+<button class="md:hidden text-primary mobile-menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
 <span class="material-symbols-outlined" style="font-size: 28px;">menu</span>
 </button>
 </div>
@@ -268,7 +322,7 @@
 </div>
 </section>
 <!-- 4. FEATURED PROVIDERS -->
-<section class="py-24 px-margin-desktop bg-surface max-w-7xl mx-auto">
+<section class="py-24 px-margin-desktop bg-surface max-w-7xl mx-auto" id="featured-providers">
 <h2 class="font-display-lg text-display-lg text-on-background mb-12">People who help keep great stays running.</h2>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 <!-- Provider 1 -->
@@ -453,14 +507,14 @@
 </div>
 </section>
 <!-- 9. OPEN DIRECTORY -->
-<section class="py-32 px-margin-desktop bg-surface max-w-4xl mx-auto text-center">
+<section class="py-32 px-margin-desktop bg-surface max-w-4xl mx-auto text-center" id="open-directory">
 <h2 class="font-display-lg text-display-lg text-on-background mb-8">An open directory for the modern host.</h2>
 <p class="font-body-lg text-body-lg text-on-surface-variant text-balance mx-auto">
         AccelBnB operates as a transparent, self-serve directory. We believe in empowering hosts to build their own networks and manage their own teams. We don't take a cut of your transactions, we don't handle your payments, and we don't stand in the middle of your communications. Our sole focus is making it effortless to discover the local talent that makes exceptional hospitality possible.
     </p>
 </section>
 <!-- 10. FINAL CTA -->
-<section class="py-40 px-margin-desktop bg-surface-container-highest relative overflow-hidden">
+<section class="py-40 px-margin-desktop bg-surface-container-highest relative overflow-hidden" id="final-cta">
 <div class="absolute inset-0 z-0">
 <img alt="Abstract modern interior" class="w-full h-full object-cover opacity-30 mix-blend-multiply" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnD1ZZw6ijjuARuowQzry3ayZjhBkndZRhaWdrh_MDhysu-0Osr1u3XCO7RJ8N2fXA14lIU4KVVsnz6cuNiLiLz5m1jLlOwHJIQbcOJEYTqFouGm2834sdM3nYuXpjc5cl5riMHZQoNv6FCUTS7V2OJYwckMYjG8BPFw_dmCArn2H38_hc-D6SJpnLn0cdqtErRAMW-d37hNfysprLIv5XPVfNldTg3LaIJmNwnrJuTdNbVHTn_9QDyg"/>
 </div>
@@ -480,7 +534,7 @@
 <!-- 11. FULL FOOTER -->
 <footer class="bg-surface-container-lowest border-t border-outline-variant py-xl px-margin-desktop w-full">
 <div class="max-w-7xl mx-auto flex flex-col gap-xl">
-<div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12" id="footer-grid">
 <div>
 <h4 class="font-headline-md text-headline-md text-primary mb-6">AccelBnB</h4>
 <p class="font-body-md text-body-md text-on-surface-variant max-w-xs">Connecting short-term rentals with specialized local professionals to elevate the guest experience.</p>
@@ -512,7 +566,7 @@
 </ul>
 </div>
 </div>
-<div class="pt-8 border-t border-surface-container-high flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="pt-8 border-t border-surface-container-high flex flex-col md:flex-row justify-between items-center gap-4" id="footer-meta">
 <p class="font-body-md text-body-md text-secondary">© 2024 AccelBnB. All rights reserved.</p>
 <div class="flex gap-4 text-secondary">
 <a class="hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">language</span></a>
@@ -521,7 +575,25 @@
 </div>
 </div>
 </footer>
-<script>
+<script>        const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
+        const mobileNavPanel = document.querySelector('.mobile-nav-panel');
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const mobileNavClose = document.querySelector('.mobile-nav-close');
+
+        function toggleMobileNav(forceOpen) {
+            const shouldOpen = typeof forceOpen === 'boolean' ? forceOpen : !mobileNavPanel.classList.contains('open');
+            mobileNavPanel.classList.toggle('open', shouldOpen);
+            mobileNavOverlay.classList.toggle('visible', shouldOpen);
+            mobileMenuToggle?.setAttribute('aria-expanded', String(shouldOpen));
+            document.body.style.overflow = shouldOpen ? 'hidden' : '';
+        }
+
+        mobileMenuToggle?.addEventListener('click', () => toggleMobileNav());
+        mobileNavClose?.addEventListener('click', () => toggleMobileNav(false));
+        mobileNavOverlay?.addEventListener('click', () => toggleMobileNav(false));
+        document.querySelectorAll('.mobile-nav-links a').forEach((link) => {
+            link.addEventListener('click', () => toggleMobileNav(false));
+        });
         // Simple scroll effect for nav
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('main-nav');
